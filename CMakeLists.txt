@@ -23,11 +23,6 @@ add_compile_options(
         -Wno-maybe-uninitialized
 )
 
-# MQTT sources
-file(GLOB MQTT_SOURCES
-        "paho.mqtt.embedded-c/MQTTPacket/src/*.c"
-)
-
 # Project source files
 add_executable(${PROJECT_NAME}
 
@@ -59,19 +54,11 @@ add_executable(${PROJECT_NAME}
         mqtt/IPStack.h
         mqtt/lwipopts.h
 
-        ${MQTT_SOURCES}
 
         # I2C
-        i2c/PicoI2CDevice.cpp
-        i2c/PicoI2CDevice.h
         i2c/PicoI2CBus.cpp
         i2c/PicoI2CBus.h
 
-        # SPI
-        spi/PicoSPIBus.cpp
-        spi/PicoSPIBus.h
-        spi/PicoSPIDevice.cpp
-        spi/PicoSPIDevice.h
 )
 
 # Create map/bin/hex/uf2 files
@@ -87,8 +74,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE
         # Tarvitaan vielä nykyisille I2C/SPI helper-luokille
         display
 
-        paho.mqtt.embedded-c/MQTTPacket/src
-        paho.mqtt.embedded-c/MQTTClient/src
+
 )
 
 # Libraries
